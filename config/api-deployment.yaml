@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: api
+  template:
+    metadata:
+      labels: 
+         component: api
+    spec:
+      containers:
+        - name: api
+          image: dasiloy/docker-express-api
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip
+            - name: REDIS_PORT
+              value: "6379"
+            - name: DB_USERNAME
+              value: postgres
+            - name: DB_NAME
+              value: postgres
+            - name: DB_HOST
+              value: postgres-cluster-ip
+            - name: DB_PORT
+              value: "5432"
+            - name: PORT
+              value: "8000"
+            - name: DB_PASSWORD
+              valueFrom:
+               secretKeyRef:
+                name: db-password
+                key: DB_PASSWORD
+          ports:
+            - containerPort: 8000
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      
+  
+
