@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: worker-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       component: worker
@@ -22,6 +22,6 @@ spec:
             value: "6379"
         resources:
           limits:
-            memory: "128Mi"
+            memory: "512Mi"
             cpu: "500m"
         
