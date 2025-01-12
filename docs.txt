@@ -1,4 +1,5 @@
 kubectl create secret <secret-type=generic> <Secret-name> --from-literal key=value
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0/deploy/static/provider/cloud/deploy.yaml // set up ingress on local machine
 kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx // get ingress status
-❯ kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443    // open dashboard
+kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443    // open dashboard
+ingress-nginx // nginx-controller used
